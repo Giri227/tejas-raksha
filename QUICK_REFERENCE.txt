@@ -1,0 +1,131 @@
+================================================================================
+TEJAS RAKSHA DASHBOARD - QUICK REFERENCE
+================================================================================
+
+📋 BEFORE YOU START
+================================================================================
+1. Install Python 3.8+ (python --version)
+2. Install Redis Server (see below)
+3. Have 3 terminals ready
+
+📦 INSTALL REDIS
+================================================================================
+Windows (Docker):    docker run -d --name redis -p 6379:6379 redis
+Linux:               sudo apt install redis-server && sudo systemctl start redis
+Mac:                 brew install redis && brew services start redis
+Verify:              redis-cli ping (should return PONG)
+
+🚀 SETUP (ONE TIME)
+================================================================================
+cd agri-scanner/dashboard/backend
+python -m venv venv
+venv\Scripts\activate                    # Windows
+source venv/bin/activate                 # Linux/Mac
+pip install -r requirements.txt
+copy .env.example .env                   # Windows
+cp .env.example .env                     # Linux/Mac
+
+✅ RUN (EVERY TIME)
+================================================================================
+
+TERMINAL 1 - Redis:
+-------------------
+# If using Docker:
+docker start redis
+
+# If installed locally:
+redis-server
+
+TERMINAL 2 - Celery Worker:
+----------------------------
+cd agri-scanner/dashboard/backend
+venv\Scripts\activate
+python run_celery.py
+# Wait for: "celery@hostname ready"
+
+TERMINAL 3 - FastAPI Server:
+-----------------------------
+cd agri-scanner/dashboard/backend
+venv\Scripts\activate
+python run_server.py
+# Wait for: "Uvicorn running on http://127.0.0.1:8000"
+
+🌐 ACCESS
+================================================================================
+Dashboard:    http://127.0.0.1:8000
+API Docs:     http://127.0.0.1:8000/docs
+Health:       http://127.0.0.1:8000/health
+
+🧪 TEST
+================================================================================
+1. Open http://127.0.0.1:8000
+2. Click "New Scan"
+3. Enter URL: http://testphp.vulnweb.com
+4. Click "Start Scan"
+5. Click "View Live" for real-time monitoring
+
+Expected: 40-60 vulnerabilities found in 2-5 minutes
+
+🛑 STOP
+================================================================================
+1. Press Ctrl+C in Terminal 3 (FastAPI)
+2. Press Ctrl+C in Terminal 2 (Celery)
+3. docker stop redis (if using Docker)
+
+❌ TROUBLESHOOTING
+================================================================================
+Redis not running:
+  redis-cli ping
+  # If fails: start Redis (see INSTALL REDIS above)
+
+Port 8000 in use:
+  Windows: netstat -ano | findstr :8000
+  Linux:   lsof -ti:8000 | xargs kill -9
+
+Database error:
+  del tejas_raksha.db (Windows)
+  rm tejas_raksha.db (Linux/Mac)
+  # Restart server
+
+Celery won't start:
+  # Make sure you're in: agri-scanner/dashboard/backend
+  # Make sure venv is activated: (venv) in prompt
+
+📚 DOCUMENTATION
+================================================================================
+Complete Guide:    COMPLETE_SETUP_GUIDE.md
+Deployment:        dashboard/DEPLOYMENT_GUIDE.md
+Full README:       README_DASHBOARD.md
+
+🎯 QUICK COMMANDS
+================================================================================
+Check Redis:       redis-cli ping
+Check Python:      python --version
+Activate venv:     venv\Scripts\activate (Windows)
+                   source venv/bin/activate (Linux/Mac)
+Deactivate venv:   deactivate
+View tasks:        celery -A app.celery_app inspect active
+View DB tables:    sqlite3 tejas_raksha.db ".tables"
+
+📊 WHAT TO EXPECT
+================================================================================
+✅ Connection status: "Connected" (green)
+✅ Real-time progress updates
+✅ Live findings appearing
+✅ Activity log with timestamps
+✅ 40-60 vulnerabilities for testphp.vulnweb.com
+✅ Scan completes in 2-5 minutes
+
+🎉 SUCCESS CHECKLIST
+================================================================================
+[ ] Redis running (redis-cli ping returns PONG)
+[ ] Celery shows "ready" message
+[ ] FastAPI shows "running" message
+[ ] Can access http://127.0.0.1:8000
+[ ] Can create a scan
+[ ] Can see live updates
+[ ] Can view results
+
+================================================================================
+Need help? See COMPLETE_SETUP_GUIDE.md for detailed instructions
+================================================================================

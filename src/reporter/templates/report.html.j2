@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Scan Report - {{ scan_metadata.target_url }}</title>
+    <style>
+        {{ embedded_css }}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-top">
+                <div class="logo-section">
+                    {% if logo_base64 %}
+                    <img src="data:image/png;base64,{{ logo_base64 }}" alt="Tejas Raksha Logo" class="logo">
+                    {% endif %}
+                    <div class="title-section">
+                        <h1>🛡️ Tejas Raksha</h1>
+                        <p class="subtitle">Security Scan Report</p>
+                    </div>
+                </div>
+                <div class="download-section">
+                    <button onclick="downloadReport()" class="download-btn">
+                        📥 Download Report
+                    </button>
+                    <div class="timestamp">{{ scan_metadata.scan_date }}</div>
+                </div>
+            </div>
+            <div class="metadata">
+                <div class="metadata-item">
+                    <strong>Target:</strong> <a href="{{ scan_metadata.target_url }}" target="_blank">{{ scan_metadata.target_url }}</a>
+                </div>
+                <div class="metadata-item">
+                    <strong>Scan Date:</strong> {{ scan_metadata.scan_date }}
+                </div>
+                <div class="metadata-item">
+                    <strong>Duration:</strong> {{ scan_metadata.duration }}s
+                </div>
+                <div class="metadata-item">
+                    <strong>Pages Crawled:</strong> {{ scan_metadata.pages_crawled }}
+                </div>
+                <div class="metadata-item">
+                    <strong>Pages Discovered:</strong> {{ scan_metadata.pages_discovered }}
+                </div>
+                <div class="metadata-item">
+                    <strong>Scanner Version:</strong> {{ scan_metadata.scanner_version }}
+                </div>
+            </div>
+        </header>
+
+        <section class="executive-summary">
+            <h2>Executive Summary</h2>
+            <div class="severity-counts">
+                <div class="severity-box high">
+                    <div class="count">{{ findings_by_severity.High|length }}</div>
+                    <div class="label">High</div>
+                </div>
+                <div class="severity-box medium">
+                    <div class="count">{{ findings_by_severity.Medium|length }}</div>
+                    <div class="label">Medium</div>
+                </div>
+                <div class="severity-box low">
+                    <div class="count">{{ findings_by_severity.Low|length }}</div>
+                    <div class="label">Low</div>
+                </div>
+                <div class="severity-box info">
+                    <div class="count">{{ findings_by_severity.Info|length }}</div>
+                    <div class="label">Info</div>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="severityChart"></canvas>
+            </div>
+            
+            <div class="summary-stats">
+                <p><strong>Total Findings:</strong> {{ statistics.total_findings }}</p>
+                <p><strong>Scan Performance:</strong> {{ statistics.pages_per_minute }} pages/minute</p>
+                {% if statistics.error_count > 0 %}
+                <p><strong>Errors Encountered:</strong> {{ statistics.error_count }}</p>
+                {% endif %}
+            </div>
+        </section>
+
+        <section class="findings">
+            <h2>Detailed Findings</h2>
+            
+            <div class="filter-controls">
+                <label>Filter by Severity:</label>
+                <button class="filter-btn active" data-severity="all">All</button>
+                <button class="filter-btn" data-severity="High">High</button>
+                <button class="filter-btn" data-severity="Medium">Medium</button>
+                <button class="filter-btn" data-severity="Low">Low</button>
+                <button class="filter-btn" data-severity="Info">Info</button>
+            </div>
+            
+            <table id="findingsTable">
+                <thead>
+                    <tr>
+                        <th>Severity</th>
+                        <th>Title</th>
+                        <th>URL</th>
+                        <th>Description</th>
+                        <th>Remediation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for finding in findings %}
+                    <tr class="finding-row severity-{{ finding.severity.value.lower() }}" data-severity="{{ finding.severity.value }}">
+                        <td><span class="severity-badge {{ finding.severity.value.lower() }}">{{ finding.severity.value|e }}</span></td>
+                        <td><strong>{{ finding.title|e }}</strong><br><small>{{ finding.category|e }}</small></td>
+                        <td><a href="{{ finding.url|e }}" target="_blank" class="url-link">{{ finding.url[:50]|e }}{% if finding.url|length > 50 %}...{% endif %}</a></td>
+                        <td>{{ finding.description[:200]|e }}{% if finding.description|length > 200 %}...{% endif %}</td>
+                        <td>{{ finding.remediation[:200]|e }}{% if finding.remediation|length > 200 %}...{% endif %}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+            {% if findings|length == 0 %}
+            <div class="no-findings">
+                <p>✅ No security issues found! The scan completed successfully with no vulnerabilities detected.</p>
+            </div>
+            {% endif %}
+        </section>
+
+        <footer>
+            <p>Generated by <strong>Tejas Raksha</strong> Security Scanner v{{ scan_metadata.scanner_version }}</p>
+            <p><strong>Disclaimer:</strong> This report is for authorized security testing only. Results should be verified manually.</p>
+        </footer>
+    </div>
+
+    <script>
+        {{ embedded_js }}
+    </script>
+</body>
+</html>

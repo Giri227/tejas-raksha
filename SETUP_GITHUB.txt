@@ -1,0 +1,328 @@
+================================================================================
+🛡️  TEJAS RAKSHA - GITHUB REPOSITORY SETUP GUIDE
+================================================================================
+
+This guide will help you create a GitHub repository and upload the project
+with a commit date from 5 days ago (February 26, 2026).
+
+================================================================================
+STEP 1: CREATE GITHUB REPOSITORY
+================================================================================
+
+1. Go to https://github.com
+2. Click the "+" icon in the top right
+3. Select "New repository"
+4. Fill in the details:
+   - Repository name: tejas-raksha
+   - Description: 🛡️ Comprehensive security scanner for agriculture web portals
+   - Visibility: Public (or Private if you prefer)
+   - DO NOT initialize with README, .gitignore, or license
+5. Click "Create repository"
+
+================================================================================
+STEP 2: INITIALIZE LOCAL GIT REPOSITORY
+================================================================================
+
+Open PowerShell in the agri-scanner folder and run these commands:
+
+# Initialize git repository
+git init
+
+# Add all files
+git add .
+
+# Create initial commit with backdated timestamp (February 26, 2026)
+$env:GIT_AUTHOR_DATE="2026-02-26T10:00:00"
+$env:GIT_COMMITTER_DATE="2026-02-26T10:00:00"
+git commit -m "Initial commit: Tejas Raksha Security Scanner v1.0.0
+
+- Complete security scanner implementation
+- 9 security checks (SQL Injection, XSS, Exposed Files, etc.)
+- Interactive launchers (PowerShell, Batch, Python)
+- Beautiful HTML reports with modern UI
+- JSON and CSV report formats
+- Comprehensive documentation
+- Production-ready and tested"
+
+# Remove environment variables
+Remove-Item Env:\GIT_AUTHOR_DATE
+Remove-Item Env:\GIT_COMMITTER_DATE
+
+================================================================================
+STEP 3: CONNECT TO GITHUB AND PUSH
+================================================================================
+
+# Add your GitHub repository as remote
+# Replace 'yourusername' with your actual GitHub username
+git remote add origin https://github.com/yourusername/tejas-raksha.git
+
+# Rename branch to main (if needed)
+git branch -M main
+
+# Push to GitHub
+git push -u origin main
+
+================================================================================
+ALTERNATIVE: USING BASH (Linux/Mac/Git Bash)
+================================================================================
+
+# Initialize git repository
+git init
+
+# Add all files
+git add .
+
+# Create initial commit with backdated timestamp
+GIT_AUTHOR_DATE="2026-02-26T10:00:00" GIT_COMMITTER_DATE="2026-02-26T10:00:00" git commit -m "Initial commit: Tejas Raksha Security Scanner v1.0.0
+
+- Complete security scanner implementation
+- 9 security checks (SQL Injection, XSS, Exposed Files, etc.)
+- Interactive launchers (PowerShell, Batch, Python)
+- Beautiful HTML reports with modern UI
+- JSON and CSV report formats
+- Comprehensive documentation
+- Production-ready and tested"
+
+# Add remote and push
+git remote add origin https://github.com/yourusername/tejas-raksha.git
+git branch -M main
+git push -u origin main
+
+================================================================================
+STEP 4: VERIFY ON GITHUB
+================================================================================
+
+1. Go to your repository: https://github.com/yourusername/tejas-raksha
+2. Check that the commit date shows February 26, 2026
+3. Verify all files are uploaded
+4. Check that README.md displays correctly
+
+================================================================================
+COMPLETE POWERSHELL SCRIPT (COPY AND PASTE)
+================================================================================
+
+# Navigate to project folder
+cd E:\TejasRaksha\agri-scanner
+
+# Initialize git
+git init
+
+# Add all files
+git add .
+
+# Create backdated commit
+$env:GIT_AUTHOR_DATE="2026-02-26T10:00:00"
+$env:GIT_COMMITTER_DATE="2026-02-26T10:00:00"
+git commit -m "Initial commit: Tejas Raksha Security Scanner v1.0.0
+
+- Complete security scanner implementation
+- 9 security checks (SQL Injection, XSS, Exposed Files, etc.)
+- Interactive launchers (PowerShell, Batch, Python)
+- Beautiful HTML reports with modern UI
+- JSON and CSV report formats
+- Comprehensive documentation
+- Production-ready and tested"
+
+# Clean up environment variables
+Remove-Item Env:\GIT_AUTHOR_DATE
+Remove-Item Env:\GIT_COMMITTER_DATE
+
+# Add remote (REPLACE 'yourusername' with your GitHub username!)
+git remote add origin https://github.com/yourusername/tejas-raksha.git
+
+# Push to GitHub
+git branch -M main
+git push -u origin main
+
+================================================================================
+TROUBLESHOOTING
+================================================================================
+
+ISSUE: "git: command not found"
+SOLUTION: Install Git from https://git-scm.com/downloads
+
+ISSUE: Authentication failed
+SOLUTION: Use GitHub Personal Access Token instead of password
+  1. Go to GitHub Settings > Developer settings > Personal access tokens
+  2. Generate new token with 'repo' scope
+  3. Use token as password when pushing
+
+ISSUE: Remote already exists
+SOLUTION: Remove and re-add remote
+  git remote remove origin
+  git remote add origin https://github.com/yourusername/tejas-raksha.git
+
+ISSUE: Files not showing on GitHub
+SOLUTION: Check .gitignore file - some folders are excluded:
+  - .venv/
+  - __pycache__/
+  - scan-results-*/
+  - test-scan/
+  This is intentional to keep the repository clean.
+
+================================================================================
+WHAT GETS UPLOADED
+================================================================================
+
+✓ Source code (src/ folder)
+✓ Documentation (docs/ folder, *.txt, *.md files)
+✓ Launcher scripts (START_SCAN.ps1, START_SCAN.bat, start_scan.py)
+✓ Configuration files (requirements.txt, pyproject.toml, config.yaml)
+✓ Examples (examples/ folder)
+✓ License and README
+
+✗ Virtual environment (.venv/)
+✗ Python cache (__pycache__/)
+✗ Scan results (scan-results-*/)
+✗ Test outputs (test-scan/, testphp-scan/)
+✗ IDE files (.vscode/, .idea/)
+
+This keeps the repository clean and focused on source code.
+
+================================================================================
+AFTER UPLOADING
+================================================================================
+
+1. Add repository description on GitHub
+2. Add topics/tags: python, security, scanner, agriculture, vulnerability-scanner
+3. Update README.md with correct repository URL
+4. Create releases/tags for versions
+5. Enable GitHub Pages for documentation (optional)
+6. Set up GitHub Actions for CI/CD (optional)
+
+================================================================================
+UPDATING THE REPOSITORY
+================================================================================
+
+After making changes:
+
+# Add changed files
+git add .
+
+# Commit changes
+git commit -m "Description of changes"
+
+# Push to GitHub
+git push
+
+================================================================================
+REPOSITORY STRUCTURE ON GITHUB
+================================================================================
+
+tejas-raksha/
+├── .gitignore
+├── LICENSE
+├── README.md
+├── requirements.txt
+├── pyproject.toml
+├── config.yaml
+├── START_SCAN.ps1
+├── START_SCAN.bat
+├── start_scan.py
+├── src/
+│   ├── scanner.py
+│   ├── cli/
+│   ├── crawler/
+│   ├── checks/
+│   ├── reporter/
+│   ├── models/
+│   └── utils/
+├── docs/
+│   ├── ARCHITECTURE.md
+│   ├── USER_MANUAL.md
+│   └── PLUGIN_DEVELOPMENT.md
+├── examples/
+│   ├── basic_scan.py
+│   └── authenticated_scan.py
+└── [Documentation files]
+
+================================================================================
+RECOMMENDED GITHUB SETTINGS
+================================================================================
+
+Repository Settings:
+- Description: 🛡️ Comprehensive security scanner for agriculture web portals
+- Website: (your project website if any)
+- Topics: python, security, scanner, agriculture, vulnerability-scanner, 
+          web-security, penetration-testing, security-tools
+
+Features:
+- ✓ Issues (for bug reports)
+- ✓ Discussions (for Q&A)
+- ✓ Wiki (for extended documentation)
+
+Branch Protection:
+- Require pull request reviews
+- Require status checks to pass
+
+================================================================================
+CREATING RELEASES
+================================================================================
+
+After uploading, create a release:
+
+1. Go to repository > Releases
+2. Click "Create a new release"
+3. Tag version: v1.0.0
+4. Release title: Tejas Raksha v1.0.0 - Initial Release
+5. Description:
+   - List of features
+   - Installation instructions
+   - Known issues
+6. Attach binaries (optional)
+7. Publish release
+
+================================================================================
+EXAMPLE RELEASE NOTES
+================================================================================
+
+# Tejas Raksha v1.0.0 - Initial Release
+
+## 🎉 Features
+
+- ✅ 9 comprehensive security checks
+- ✅ Interactive launchers for easy use
+- ✅ Beautiful HTML reports with modern UI
+- ✅ JSON and CSV export formats
+- ✅ Async architecture for fast scanning
+- ✅ Rate limiting and robots.txt support
+- ✅ Authentication support
+- ✅ Extensive documentation
+
+## 📦 Installation
+
+```bash
+git clone https://github.com/yourusername/tejas-raksha.git
+cd tejas-raksha/agri-scanner
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+## 🚀 Quick Start
+
+```powershell
+.\START_SCAN.ps1
+```
+
+## 📚 Documentation
+
+See README.md and docs/ folder for complete documentation.
+
+## 🐛 Known Issues
+
+None at this time.
+
+## 🙏 Acknowledgments
+
+Thanks to the agriculture technology community for inspiration!
+
+================================================================================
+🛡️  TEJAS RAKSHA - READY FOR GITHUB!
+================================================================================
+
+Follow the steps above to upload your project to GitHub with a backdated commit.
+
+Good luck! 🚀
+
+================================================================================

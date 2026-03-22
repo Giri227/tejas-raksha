@@ -1,0 +1,318 @@
+================================================================================
+🛡️  TEJAS RAKSHA - INTERACTIVE LAUNCHER GUIDE
+================================================================================
+
+We've created 3 easy-to-use launcher scripts that automatically handle
+everything for you - no need to remember complex commands!
+
+================================================================================
+AVAILABLE LAUNCHERS
+================================================================================
+
+1. START_SCAN.ps1 (PowerShell - Recommended for Windows)
+   - Best for Windows PowerShell users
+   - Colorful interface
+   - Auto-opens report when done
+
+2. START_SCAN.bat (Batch - Windows CMD)
+   - For Windows Command Prompt users
+   - Simple and reliable
+   - Auto-opens report when done
+
+3. start_scan.py (Python - Cross-platform)
+   - Works on Windows, Linux, and macOS
+   - Requires Python 3.7+
+   - Most portable option
+
+================================================================================
+HOW TO USE
+================================================================================
+
+OPTION 1: PowerShell Script (Recommended)
+------------------------------------------
+1. Open PowerShell
+2. Navigate to agri-scanner folder:
+   cd E:\TejasRaksha\agri-scanner
+
+3. Run the script:
+   .\START_SCAN.ps1
+
+4. Follow the prompts:
+   - Enter target URL
+   - Choose scan depth (1/2/3)
+   - Choose report format (1/2/3)
+   - Confirm and start
+
+5. Wait for scan to complete
+6. Report opens automatically!
+
+
+OPTION 2: Batch Script (Windows CMD)
+-------------------------------------
+1. Open Command Prompt
+2. Navigate to agri-scanner folder:
+   cd E:\TejasRaksha\agri-scanner
+
+3. Run the script:
+   START_SCAN.bat
+
+4. Follow the prompts (same as above)
+
+
+OPTION 3: Python Script (Any OS)
+---------------------------------
+1. Open terminal/command prompt
+2. Navigate to agri-scanner folder:
+   cd E:\TejasRaksha\agri-scanner
+
+3. Activate virtual environment:
+   Windows PowerShell:
+     & e:/TejasRaksha/.venv/Scripts/Activate.ps1
+   
+   Windows CMD:
+     e:\TejasRaksha\.venv\Scripts\activate.bat
+   
+   Linux/Mac:
+     source ../venv/bin/activate
+
+4. Run the script:
+   python start_scan.py
+
+5. Follow the prompts
+
+================================================================================
+WHAT THE LAUNCHER DOES
+================================================================================
+
+✓ Automatically activates virtual environment (PowerShell/Batch only)
+✓ Asks for target URL
+✓ Asks for scan depth (Quick/Normal/Deep)
+✓ Asks for report format (HTML/JSON/CSV)
+✓ Shows configuration summary
+✓ Asks for confirmation
+✓ Runs the scan with optimal settings
+✓ Automatically opens HTML report when done
+✓ Creates timestamped output folders
+
+================================================================================
+INTERACTIVE PROMPTS
+================================================================================
+
+PROMPT 1: Target URL
+--------------------
+Enter the website you want to scan.
+
+Examples:
+- http://testphp.vulnweb.com (safe test site)
+- https://example.com
+- http://yourwebsite.com
+
+⚠️  Always get authorization before scanning!
+
+
+PROMPT 2: Scan Depth
+---------------------
+Choose how deep to crawl:
+
+1 = Quick Scan (Depth 1)
+   - Scans homepage + direct links
+   - Takes 2-5 minutes
+   - Good for quick checks
+
+2 = Normal Scan (Depth 2)
+   - Scans 2 levels deep
+   - Takes 5-20 minutes
+   - Recommended for most scans
+
+3 = Deep Scan (Depth 3)
+   - Scans 3 levels deep
+   - Takes 20-60+ minutes
+   - Comprehensive assessment
+
+
+PROMPT 3: Report Format
+------------------------
+Choose output format(s):
+
+1 = HTML only
+   - Beautiful web report
+   - Interactive and easy to read
+   - Recommended for most users
+
+2 = HTML + JSON
+   - Web report + machine-readable data
+   - Good for automation
+
+3 = HTML + JSON + CSV
+   - All formats
+   - Maximum compatibility
+
+================================================================================
+EXAMPLE SESSION
+================================================================================
+
+$ .\START_SCAN.ps1
+
+================================================================================
+🛡️  TEJAS RAKSHA SECURITY SCANNER
+    Protection of Agriculture Web Portals
+================================================================================
+
+[1/5] Activating virtual environment...
+✓ Virtual environment activated
+
+[2/5] Enter target website URL
+Examples:
+  - http://testphp.vulnweb.com (test site)
+  - https://example.com
+  - http://yourwebsite.com
+
+Target URL: http://testphp.vulnweb.com
+
+[3/5] Select scan depth
+  1 - Quick Scan (Depth 1, ~2-5 minutes)
+  2 - Normal Scan (Depth 2, ~5-20 minutes)
+  3 - Deep Scan (Depth 3, ~20-60 minutes)
+
+Enter choice (1/2/3) [default: 1]: 1
+
+[4/5] Select report format(s)
+  1 - HTML only (recommended)
+  2 - HTML + JSON
+  3 - HTML + JSON + CSV (all formats)
+
+Enter choice (1/2/3) [default: 1]: 1
+
+================================================================================
+SCAN CONFIGURATION
+================================================================================
+Target URL:    http://testphp.vulnweb.com
+Scan Type:     Quick Scan (Depth 1)
+Output Dir:    ./scan-results-20260303_120000
+Report Format: html
+================================================================================
+
+Start scan? (Y/n): y
+
+[5/5] Starting scan...
+
+================================================================================
+⏳ SCANNING IN PROGRESS...
+================================================================================
+
+[... scan output ...]
+
+================================================================================
+✓ SCAN COMPLETED SUCCESSFULLY!
+================================================================================
+
+Reports saved to: ./scan-results-20260303_120000
+
+Opening HTML report...
+
+Thank you for using Tejas Raksha Security Scanner!
+
+Press Enter to exit
+
+================================================================================
+OUTPUT FOLDERS
+================================================================================
+
+Each scan creates a timestamped folder:
+- scan-results-20260303_120000/
+  ├── scan_report_20260303_120000.html
+  ├── scan_report_20260303_120000.json (if selected)
+  └── scan_report_20260303_120000.csv (if selected)
+
+This prevents overwriting previous scan results.
+
+================================================================================
+TROUBLESHOOTING
+================================================================================
+
+ISSUE: "Execution policy" error (PowerShell)
+SOLUTION: Run PowerShell as Administrator and execute:
+  Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+ISSUE: "Virtual environment not found"
+SOLUTION: Check the path in the script matches your installation:
+  - Edit START_SCAN.ps1 or START_SCAN.bat
+  - Update the venv path to match your system
+
+ISSUE: Script doesn't run
+SOLUTION: Make sure you're in the agri-scanner folder:
+  cd E:\TejasRaksha\agri-scanner
+
+ISSUE: Python script fails
+SOLUTION: Make sure virtual environment is activated first
+
+================================================================================
+ADVANTAGES OF USING LAUNCHERS
+================================================================================
+
+✓ No need to remember complex commands
+✓ No need to manually activate virtual environment
+✓ Interactive and user-friendly
+✓ Prevents common mistakes
+✓ Automatically opens reports
+✓ Creates organized output folders
+✓ Shows clear progress indicators
+✓ Handles errors gracefully
+
+================================================================================
+COMPARISON WITH MANUAL COMMANDS
+================================================================================
+
+MANUAL WAY (Complex):
+---------------------
+1. & e:/TejasRaksha/.venv/Scripts/Activate.ps1
+2. python -m src.cli.commands scan http://example.com --no-warning -d 1 -o ./reports -f html -v
+3. Invoke-Item ./reports/scan_report_*.html
+
+LAUNCHER WAY (Easy):
+--------------------
+1. .\START_SCAN.ps1
+2. Answer 3 simple questions
+3. Done!
+
+================================================================================
+RECOMMENDATIONS
+================================================================================
+
+✓ Use START_SCAN.ps1 for Windows PowerShell (best experience)
+✓ Use START_SCAN.bat for Windows CMD
+✓ Use start_scan.py for Linux/Mac or if others don't work
+✓ Start with Quick Scan (depth 1) for testing
+✓ Use Normal Scan (depth 2) for regular audits
+✓ Use Deep Scan (depth 3) for comprehensive assessments
+✓ Always get authorization before scanning websites
+
+================================================================================
+NEXT STEPS
+================================================================================
+
+1. Try the launcher on the test site:
+   .\START_SCAN.ps1
+   URL: http://testphp.vulnweb.com
+   Depth: 1 (Quick)
+   Format: 1 (HTML)
+
+2. Review the generated report
+
+3. Use on your authorized targets
+
+4. Share reports with your team
+
+================================================================================
+🛡️  TEJAS RAKSHA - MAKING SECURITY SCANNING EASY!
+================================================================================
+
+Version: 1.0.0
+Last Updated: March 3, 2026
+
+For more information, see:
+- QUICK_START_GUIDE.txt
+- GETTING_STARTED.txt
+- README.md
+
+================================================================================

@@ -1,0 +1,515 @@
+================================================================================
+                    TEJAS RAKSHA - GETTING STARTED GUIDE
+================================================================================
+
+Project: Tejas Raksha Security Scanner
+Version: 1.0.0
+Date: March 2, 2026
+
+This guide provides step-by-step instructions from installation to running
+your first security scan.
+
+================================================================================
+                        TABLE OF CONTENTS
+================================================================================
+
+1. SYSTEM REQUIREMENTS
+2. INSTALLATION STEPS
+3. VERIFICATION
+4. RUNNING YOUR FIRST SCAN
+5. UNDERSTANDING REPORTS
+6. ADVANCED USAGE
+7. TESTING COMMANDS
+8. TROUBLESHOOTING
+9. USEFUL COMMANDS
+
+================================================================================
+                      1. SYSTEM REQUIREMENTS
+================================================================================
+
+Before starting, ensure you have:
+
+✓ Python 3.10 or higher
+✓ pip (Python package manager)
+✓ Internet connection
+✓ 512MB RAM minimum (2GB recommended)
+✓ 100MB disk space
+
+Check Python version:
+    python --version
+    # Should show: Python 3.10.x or higher
+
+Check pip:
+    pip --version
+    # Should show pip version
+
+================================================================================
+                      2. INSTALLATION STEPS
+================================================================================
+
+STEP 1: Navigate to Project Directory
+--------------------------------------
+cd agri-scanner
+
+STEP 2: Create Virtual Environment (Recommended)
+-------------------------------------------------
+# On Windows:
+python -m venv .venv
+.venv\Scripts\activate
+
+# On Linux/Mac:
+python3 -m venv .venv
+source .venv/bin/activate
+
+STEP 3: Install Dependencies
+-----------------------------
+pip install -r requirements.txt
+
+STEP 4: Install Package
+------------------------
+pip install -e .
+
+This installs Tejas Raksha in editable mode, making both commands available:
+- tejas-raksha (new command)
+- agri-scanner (legacy command)
+
+================================================================================
+                        3. VERIFICATION
+================================================================================
+
+STEP 1: Check Installation
+---------------------------
+tejas-raksha --version
+
+Expected output:
+    tejas-raksha, version 1.0.0
+
+STEP 2: View Help
+-----------------
+tejas-raksha --help
+
+Expected output:
+    Usage: tejas-raksha [OPTIONS] COMMAND [ARGS]...
+    
+    Tejas Raksha Security Scanner - Professional security testing tool
+    for agriculture web portals.
+
+STEP 3: View Scan Options
+--------------------------
+tejas-raksha scan --help
+
+Expected output:
+    Shows all available scan options and parameters
+
+STEP 4: Run Branding Test
+--------------------------
+python test_branding.py
+
+Expected output:
+    ✅ Logo loaded successfully
+    ✅ CSS contains Tejas Raksha branding
+    ✅ CSS contains download button styles
+    ✅ JavaScript contains download function
+    ✅ Report generated successfully
+    (All checks should pass)
+
+================================================================================
+                   4. RUNNING YOUR FIRST SCAN
+================================================================================
+
+BASIC SCAN (Recommended for First Time)
+----------------------------------------
+tejas-raksha scan http://testphp.vulnweb.com \
+    --no-warning \
+    --depth 1 \
+    --concurrency 3 \
+    --output ./my-first-scan \
+    --format html
+
+Parameters explained:
+    http://testphp.vulnweb.com  - Public vulnerable test site
+    --no-warning                - Skip ethical usage warning
+    --depth 1                   - Scan only the start page (fast)
+    --concurrency 3             - Use 3 concurrent workers
+    --output ./my-first-scan    - Save reports here
+    --format html               - Generate HTML report
+
+Expected duration: 30-60 seconds
+
+WHAT HAPPENS:
+1. Scanner starts with Tejas Raksha branding
+2. Crawler discovers URLs
+3. Security checks execute
+4. Vulnerabilities detected
+5. Report generated
+
+VIEWING THE REPORT:
+-------------------
+# On Windows:
+start my-first-scan\scan_report_*.html
+
+# On Linux:
+xdg-open my-first-scan/scan_report_*.html
+
+# On Mac:
+open my-first-scan/scan_report_*.html
+
+WHAT TO LOOK FOR IN REPORT:
+- Tejas Raksha logo in header
+- Download button (top-right)
+- Severity cards (High, Medium, Low, Info)
+- Interactive findings table
+- Professional gradient design
+
+================================================================================
+                    5. UNDERSTANDING REPORTS
+================================================================================
+
+REPORT SECTIONS:
+----------------
+
+1. HEADER
+   - Tejas Raksha logo
+   - Download button with timestamp
+   - Scan metadata (target, date, duration, pages)
+
+2. EXECUTIVE SUMMARY
+   - Severity counts (High, Medium, Low, Info)
+   - Visual chart
+   - Scan statistics
+
+3. FINDINGS TABLE
+   - Filter buttons (All, High, Medium, Low, Info)
+   - Detailed vulnerability information
+   - Severity badges
+   - URLs and descriptions
+   - Remediation guidance
+
+4. FOOTER
+   - Scanner version
+   - Disclaimer
+
+SEVERITY LEVELS:
+----------------
+HIGH    - Critical security issues (SQL Injection, XSS)
+MEDIUM  - Important issues (Missing headers, misconfigurations)
+LOW     - Minor issues (Information disclosure)
+INFO    - Informational findings
+
+DOWNLOAD BUTTON:
+----------------
+Click the "📥 Download Report" button to save a copy with timestamp:
+    tejas_raksha_report_2026-03-02-210000.html
+
+================================================================================
+                      6. ADVANCED USAGE
+================================================================================
+
+COMPREHENSIVE SCAN
+------------------
+tejas-raksha scan https://your-site.com \
+    --depth 3 \
+    --concurrency 10 \
+    --delay-min 0.5 \
+    --delay-max 1.5 \
+    --timeout 15 \
+    --output ./production-scan \
+    --format html \
+    --format json \
+    --format csv \
+    --verbose
+
+AUTHENTICATED SCAN
+------------------
+tejas-raksha scan https://your-site.com \
+    --auth-type basic \
+    --auth-user admin \
+    --auth-pass yourpassword \
+    --depth 2 \
+    --output ./auth-scan \
+    --format html
+
+CUSTOM HEADERS
+--------------
+tejas-raksha scan https://your-site.com \
+    -H "Authorization: Bearer your-token" \
+    -H "X-Custom-Header: value" \
+    --output ./custom-scan \
+    --format html
+
+WITH COOKIES
+------------
+tejas-raksha scan https://your-site.com \
+    -C "session=abc123" \
+    -C "user_id=456" \
+    --output ./cookie-scan \
+    --format html
+
+USING CONFIG FILE
+-----------------
+tejas-raksha scan https://your-site.com \
+    --config config.yaml
+
+(Edit config.yaml to customize all settings)
+
+ENABLE SPECIFIC CHECKS
+-----------------------
+tejas-raksha scan https://your-site.com \
+    --enable-check XSSCheck \
+    --enable-check SQLInjectionCheck \
+    --output ./specific-checks \
+    --format html
+
+DISABLE SPECIFIC CHECKS
+------------------------
+tejas-raksha scan https://your-site.com \
+    --disable-check DirectoryListingCheck \
+    --output ./disabled-checks \
+    --format html
+
+================================================================================
+                      7. TESTING COMMANDS
+================================================================================
+
+TEST 1: Branding and Design
+----------------------------
+python test_branding.py
+
+Expected: All checks pass, report generated
+
+TEST 2: Quick Vulnerability Scan
+---------------------------------
+tejas-raksha scan http://testphp.vulnweb.com \
+    --no-warning -d 1 -c 3 \
+    -o ./quick-test -f html
+
+Expected: Vulnerabilities detected, report generated
+
+TEST 3: Multiple Report Formats
+--------------------------------
+tejas-raksha scan http://testphp.vulnweb.com \
+    --no-warning -d 1 -c 3 \
+    -o ./multi-format-test \
+    -f html -f json -f csv
+
+Expected: 3 report files generated (HTML, JSON, CSV)
+
+TEST 4: Verbose Output
+----------------------
+tejas-raksha scan http://testphp.vulnweb.com \
+    --no-warning -d 1 -c 3 \
+    -o ./verbose-test -f html \
+    --verbose
+
+Expected: Detailed console output, report generated
+
+TEST 5: Deep Scan (Takes Longer)
+---------------------------------
+tejas-raksha scan http://testphp.vulnweb.com \
+    --no-warning -d 2 -c 5 \
+    --delay-min 0.3 --delay-max 0.6 \
+    -o ./deep-test -f html \
+    --timeout 15
+
+Expected: More URLs crawled, more vulnerabilities found
+
+================================================================================
+                      8. TROUBLESHOOTING
+================================================================================
+
+ISSUE: Command not found
+SOLUTION:
+    1. Ensure virtual environment is activated
+    2. Run: pip install -e .
+    3. Try: python -m src.cli.commands scan --help
+
+ISSUE: Logo not displaying in report
+SOLUTION:
+    1. Verify logo exists: ls logo/tejesRaskalogo.png
+    2. Check file permissions
+    3. Regenerate report
+
+ISSUE: Import errors
+SOLUTION:
+    1. Activate virtual environment
+    2. Reinstall dependencies: pip install -r requirements.txt
+    3. Reinstall package: pip install -e .
+
+ISSUE: Scan timeout
+SOLUTION:
+    1. Reduce depth: --depth 1
+    2. Reduce concurrency: --concurrency 3
+    3. Increase timeout: --timeout 30
+
+ISSUE: No vulnerabilities found
+SOLUTION:
+    1. Increase depth: --depth 2 or --depth 3
+    2. Check target is accessible
+    3. Try test site: http://testphp.vulnweb.com
+
+ISSUE: Report not opening
+SOLUTION:
+    1. Check output directory exists
+    2. Look for scan_report_*.html files
+    3. Open manually in browser
+
+ISSUE: Permission denied
+SOLUTION:
+    1. Use virtual environment
+    2. Check folder permissions
+    3. Run as administrator (if needed)
+
+================================================================================
+                      9. USEFUL COMMANDS
+================================================================================
+
+CHECK INSTALLATION
+------------------
+tejas-raksha --version
+python test_branding.py
+pip list | grep tejas-raksha
+
+VIEW HELP
+---------
+tejas-raksha --help
+tejas-raksha scan --help
+
+LIST GENERATED REPORTS
+----------------------
+# Windows:
+dir /s /b scan_report_*.html
+
+# Linux/Mac:
+find . -name "scan_report_*.html"
+
+OPEN LATEST REPORT
+------------------
+# Windows:
+for /f %i in ('dir /b /od scan_report_*.html') do start %i
+
+# Linux/Mac:
+open $(ls -t scan_report_*.html | head -1)
+
+CLEAN OLD REPORTS
+-----------------
+# Windows:
+del /s scan_report_*.html
+
+# Linux/Mac:
+find . -name "scan_report_*.html" -delete
+
+VIEW SCAN LOGS
+--------------
+# If logging to file is enabled
+cat scan.log
+tail -f scan.log  # Follow in real-time
+
+CHECK PYTHON PACKAGES
+---------------------
+pip list
+pip show tejas-raksha
+
+UPDATE DEPENDENCIES
+-------------------
+pip install --upgrade -r requirements.txt
+
+REINSTALL PACKAGE
+-----------------
+pip uninstall tejas-raksha
+pip install -e .
+
+================================================================================
+                      QUICK REFERENCE
+================================================================================
+
+MINIMAL SCAN:
+    tejas-raksha scan <URL> --no-warning -d 1 -o ./reports -f html
+
+RECOMMENDED SCAN:
+    tejas-raksha scan <URL> -d 2 -c 10 -o ./reports -f html -f json
+
+PRODUCTION SCAN:
+    tejas-raksha scan <URL> -d 3 -c 10 --delay-min 0.5 --delay-max 1.5 \
+        -o ./production-scan -f html -f json -f csv --verbose
+
+TEST SCAN:
+    tejas-raksha scan http://testphp.vulnweb.com --no-warning -d 1 \
+        -o ./test -f html
+
+================================================================================
+                      IMPORTANT NOTES
+================================================================================
+
+ETHICAL USAGE:
+- Only scan websites you own or have written permission to test
+- Unauthorized scanning may be illegal
+- Follow responsible disclosure practices
+
+PERFORMANCE:
+- Start with depth 1 for quick tests
+- Use depth 2-3 for comprehensive scans
+- Adjust concurrency based on target capacity
+- Use delays to be polite to target servers
+
+REPORTS:
+- HTML reports are interactive and visual
+- JSON reports are machine-readable
+- CSV reports are spreadsheet-friendly
+- All formats contain the same findings
+
+SECURITY:
+- Keep scanner updated
+- Review findings carefully
+- Verify vulnerabilities manually
+- Follow remediation guidance
+
+================================================================================
+                      SUPPORT & RESOURCES
+================================================================================
+
+DOCUMENTATION:
+- COMPLETE_PROJECT_OVERVIEW.txt - Complete technical overview
+- README.md - Project overview
+- QUICKSTART.md - Quick start guide
+- INSTALLATION.md - Detailed installation
+- docs/USER_MANUAL.md - Comprehensive manual
+
+EXAMPLES:
+- examples/basic_scan.py - Basic scan example
+- examples/authenticated_scan.py - Auth scan example
+
+TESTING:
+- test_branding.py - Branding test script
+- Run: python test_branding.py
+
+CONFIGURATION:
+- config.yaml - Example configuration file
+- Edit and use with: --config config.yaml
+
+================================================================================
+                      NEXT STEPS
+================================================================================
+
+1. ✓ Install Tejas Raksha
+2. ✓ Run verification tests
+3. ✓ Execute first scan on test site
+4. ✓ Review generated report
+5. ✓ Understand report sections
+6. → Scan your own sites (with permission!)
+7. → Explore advanced features
+8. → Customize configuration
+9. → Integrate into workflow
+
+================================================================================
+
+🛡️ Tejas Raksha - Protecting Agriculture Web Portals
+
+For questions or issues, refer to documentation or check:
+- GitHub: https://github.com/example/tejas-raksha
+- Documentation: docs/ directory
+
+Happy Scanning! 🚀
+
+================================================================================
+                          END OF GUIDE
+================================================================================

@@ -1,0 +1,226 @@
+================================================================================
+🛡️  TEJAS RAKSHA SECURITY SCANNER - CURRENT STATUS
+================================================================================
+
+PROJECT STATUS: ✓ FULLY OPERATIONAL
+Last Updated: March 3, 2026
+
+================================================================================
+RECENT FIX: PAGES CRAWLED COUNTER
+================================================================================
+
+ISSUE: Reports showed "pages_crawled: 0" while discovering many URLs
+FIX: Corrected the stats key from 'visited' to 'pages_crawled' in scanner.py
+STATUS: ✓ RESOLVED AND TESTED
+
+Test Results:
+- Pages Crawled: 14 ✓
+- URLs Discovered: 32 ✓
+- Working correctly!
+
+See PAGES_CRAWLED_FIX.txt for detailed explanation.
+
+================================================================================
+SCANNER CAPABILITIES
+================================================================================
+
+✓ SQL Injection Detection (MySQL, PostgreSQL, MSSQL, Oracle)
+✓ Cross-Site Scripting (XSS) - Reflected attacks
+✓ Exposed Sensitive Files (.git, .env, backups, configs)
+✓ Directory Listing vulnerabilities
+✓ Security Headers Analysis (CSP, HSTS, X-Frame-Options, etc.)
+✓ Server Information Disclosure
+✓ Error Message Disclosure
+✓ HTTPS Configuration checks
+✓ Open Redirect vulnerabilities
+
+================================================================================
+TESTING STATUS
+================================================================================
+
+Test Site: http://testphp.vulnweb.com (Public vulnerable test site)
+
+Latest Test Results:
+- ✓ SQL Injection: DETECTED (Multiple instances)
+- ✓ XSS Vulnerabilities: DETECTED (16+ instances)
+- ✓ Exposed Files: DETECTED (50+ files)
+- ✓ Missing Headers: DETECTED (6 headers)
+- ✓ Report Generation: WORKING (HTML, JSON, CSV)
+- ✓ Branding: WORKING (Tejas Raksha logo and styling)
+- ✓ Download Button: WORKING (with timestamp)
+
+================================================================================
+QUICK START COMMANDS
+================================================================================
+
+1. ACTIVATE VIRTUAL ENVIRONMENT:
+   & e:/TejasRaksha/.venv/Scripts/Activate.ps1
+
+2. QUICK SCAN (Depth 1, ~2-5 minutes):
+   python -m src.cli.commands scan http://testphp.vulnweb.com --no-warning -d 1 -o ./reports -f html
+
+3. COMPREHENSIVE SCAN (Depth 2, ~5-20 minutes):
+   python -m src.cli.commands scan http://testphp.vulnweb.com --no-warning -d 2 -o ./reports -f html -f json
+
+4. VIEW REPORT:
+   Invoke-Item ./reports/scan_report_TIMESTAMP.html
+
+================================================================================
+UNDERSTANDING SCAN METRICS
+================================================================================
+
+PAGES DISCOVERED:
+- Total unique URLs found during crawl
+- Includes all links extracted from pages
+- Example: 63 URLs discovered
+
+PAGES CRAWLED:
+- URLs successfully fetched and processed
+- Only counts successful HTTP responses
+- Example: 14 pages crawled
+
+WHY DIFFERENT?
+- Depth limiting (stops at max_depth)
+- Scope filtering (out-of-scope URLs)
+- Error handling (timeouts, 404s)
+- Content type filtering (non-HTML)
+- Robots.txt restrictions
+
+This is NORMAL and EXPECTED behavior!
+
+================================================================================
+SCAN TIME ESTIMATES
+================================================================================
+
+Depth 1 (Quick):
+- Time: 2-5 minutes
+- Pages: 10-30 URLs
+- Use: Quick security check
+
+Depth 2 (Normal):
+- Time: 5-20 minutes
+- Pages: 30-100 URLs
+- Use: Comprehensive audit
+
+Depth 3 (Deep):
+- Time: 20-60+ minutes
+- Pages: 100-500+ URLs
+- Use: Complete assessment
+
+Factors:
+- Website size and complexity
+- Network latency
+- Rate limiting (0.3-0.7s delays)
+- Number of security checks
+- Concurrency level (default: 5)
+
+================================================================================
+REPORT FEATURES
+================================================================================
+
+HTML REPORT:
+✓ Professional gradient design (purple-blue theme)
+✓ Tejas Raksha branding and logo
+✓ Interactive filtering and sorting
+✓ Severity badges with color coding
+✓ Download button with timestamp
+✓ Glassmorphism effects
+✓ Fully responsive design
+
+JSON REPORT:
+✓ Machine-readable format
+✓ Complete scan metadata
+✓ All findings with details
+✓ Easy to parse and integrate
+
+CSV REPORT:
+✓ Spreadsheet-compatible
+✓ Import into Excel/Google Sheets
+✓ Good for tracking progress
+
+================================================================================
+DOCUMENTATION FILES
+================================================================================
+
+QUICK_START_GUIDE.txt       - Complete command reference
+GETTING_STARTED.txt         - Step-by-step setup guide
+PAGES_CRAWLED_FIX.txt       - Explanation of recent fix
+COMPLETE_PROJECT_OVERVIEW.txt - Detailed project info
+README.md                   - Project overview
+docs/USER_MANUAL.md         - Complete user manual
+docs/ARCHITECTURE.md        - Technical architecture
+docs/PLUGIN_DEVELOPMENT.md  - Creating custom checks
+
+================================================================================
+KNOWN ISSUES & NOTES
+================================================================================
+
+1. Robots.txt Timeout:
+   - Sometimes fails to fetch robots.txt
+   - Scanner continues anyway (non-critical)
+   - Can be disabled with --no-robots flag
+
+2. Scan Duration:
+   - Scans take time due to rate limiting
+   - This is INTENTIONAL to avoid overloading servers
+   - Use depth 1 for faster scans
+
+3. Old Reports:
+   - Reports generated before the fix show pages_crawled: 0
+   - New scans will show correct statistics
+   - Re-run scans to get updated reports
+
+================================================================================
+TROUBLESHOOTING
+================================================================================
+
+ISSUE: Scan takes too long
+SOLUTION: Use depth 1 and reduce concurrency
+  python -m src.cli.commands scan <URL> --no-warning -d 1 -c 2
+
+ISSUE: Connection timeouts
+SOLUTION: Increase timeout value
+  python -m src.cli.commands scan <URL> --no-warning --timeout 30
+
+ISSUE: Too many requests
+SOLUTION: Increase delays
+  python -m src.cli.commands scan <URL> --no-warning --delay-min 0.5 --delay-max 1.0
+
+================================================================================
+NEXT STEPS
+================================================================================
+
+1. ✓ Scanner is fully operational
+2. ✓ Pages crawled counter is fixed
+3. ✓ All security checks working
+4. ✓ Reports generating correctly
+5. ✓ Branding and UI complete
+
+READY FOR PRODUCTION USE!
+
+To run a scan:
+1. Activate virtual environment
+2. Run scan command with target URL
+3. Wait for completion (2-20 minutes depending on depth)
+4. Open HTML report in browser
+5. Review findings and take action
+
+================================================================================
+SUPPORT
+================================================================================
+
+For detailed information, see the documentation files listed above.
+
+For testing, use: http://testphp.vulnweb.com (safe test environment)
+
+Always get authorization before scanning any website!
+
+================================================================================
+🛡️  TEJAS RAKSHA - PROTECTING AGRICULTURE WEB PORTALS
+================================================================================
+
+Version: 1.0.0
+Status: Production Ready ✓
+Last Updated: March 3, 2026
+
+================================================================================

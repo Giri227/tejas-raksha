@@ -1,0 +1,106 @@
+================================================================================
+🚀 TEJAS RAKSHA - EASIEST WAY TO START SCANNING!
+================================================================================
+
+SUPER SIMPLE - JUST 3 STEPS!
+
+================================================================================
+STEP 1: OPEN POWERSHELL
+================================================================================
+
+Right-click on the agri-scanner folder → "Open in Terminal" or "Open PowerShell here"
+
+Or manually:
+1. Press Windows + X
+2. Select "Windows PowerShell" or "Terminal"
+3. Type: cd E:\TejasRaksha\agri-scanner
+4. Press Enter
+
+================================================================================
+STEP 2: RUN THE LAUNCHER
+================================================================================
+
+Type this command and press Enter:
+
+    .\START_SCAN.ps1
+
+That's it! The script will guide you through everything.
+
+================================================================================
+STEP 3: ANSWER 3 QUESTIONS
+================================================================================
+
+Question 1: What website do you want to scan?
+Example: http://testphp.vulnweb.com
+
+Question 2: How deep should we scan? (1/2/3)
+Choose 1 for quick scan (recommended for first time)
+
+Question 3: What report format? (1/2/3)
+Choose 1 for HTML (recommended)
+
+Then press Y to start!
+
+================================================================================
+THAT'S ALL! 🎉
+================================================================================
+
+The scanner will:
+✓ Automatically activate the virtual environment
+✓ Run the security scan
+✓ Generate a beautiful report
+✓ Open the report in your browser
+✓ Show you all the vulnerabilities found
+
+================================================================================
+FIRST TIME? TRY THIS!
+================================================================================
+
+1. Run: .\START_SCAN.ps1
+
+2. When asked for URL, enter: http://testphp.vulnweb.com
+   (This is a safe test website)
+
+3. When asked for depth, enter: 1
+   (Quick scan, takes 2-5 minutes)
+
+4. When asked for format, enter: 1
+   (HTML report)
+
+5. Press Y to start
+
+6. Wait 2-5 minutes
+
+7. Report opens automatically!
+
+================================================================================
+ALTERNATIVE METHODS
+================================================================================
+
+If PowerShell doesn't work, try:
+
+METHOD 1: Batch File (Windows CMD)
+----------------------------------
+1. Open Command Prompt
+2. cd E:\TejasRaksha\agri-scanner
+3. START_SCAN.bat
+
+METHOD 2: Python Script
+-----------------------
+1. Open terminal
+2. cd E:\TejasRaksha\agri-scanner
+3. Activate venv: & e:/TejasRaksha/.venv/Scripts/Activate.ps1
+4. python start_scan.py
+
+================================================================================
+NEED HELP?
+================================================================================
+
+See these files:
+- LAUNCHER_GUIDE.txt (detailed launcher instructions)
+- QUICK_START_GUIDE.txt (all commands reference)
+- GETTING_STARTED.txt (complete setup guide)
+
+================================================================================
+🛡️  TEJAS RAKSHA - SECURITY MADE SIMPLE!
+================================================================================

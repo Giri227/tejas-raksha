@@ -1,0 +1,63 @@
+# Agriculture Web Portal Security Scanner - Configuration File
+# This is an example configuration file showing all available options
+
+# Target URL (required, can be overridden by CLI argument)
+target_url: "https://example.com"
+
+# Crawl settings
+max_depth: 2                    # Maximum crawl depth from starting URL
+concurrency: 10                 # Maximum concurrent HTTP requests
+follow_subdomains: false        # Follow links to subdomains
+
+# Rate limiting (polite crawling)
+delay_min: 0.5                  # Minimum delay between requests (seconds)
+delay_max: 2.0                  # Maximum delay between requests (seconds)
+
+# Robots.txt compliance
+respect_robots: true            # Respect robots.txt directives
+
+# JavaScript rendering (requires Playwright)
+js_render: false                # Enable JavaScript rendering
+js_timeout: 5                   # JavaScript rendering timeout (seconds)
+
+# Authentication (optional)
+auth_type: null                 # Authentication type: 'basic' or 'digest'
+auth_user: null                 # Authentication username
+auth_pass: null                 # Authentication password
+
+# HTTP settings
+timeout: 10                     # HTTP request timeout (seconds)
+
+# Custom headers (optional)
+custom_headers: {}
+  # Authorization: "Bearer token123"
+  # X-Custom-Header: "value"
+
+# Custom cookies (optional)
+custom_cookies: {}
+  # session_id: "abc123"
+  # auth_token: "xyz789"
+
+# User agents for rotation
+user_agents:
+  - "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+  - "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+  - "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+
+# Output settings
+output_dir: "./reports"         # Directory for output reports
+report_formats:                 # Report formats to generate
+  - html
+  # - json
+  # - csv
+
+# Security check settings
+enabled_checks: null            # List of specific checks to enable (null = all)
+  # - SensitiveFilesCheck
+  # - XSSCheck
+
+disabled_checks: null           # List of specific checks to disable
+  # - DirectoryListingCheck
+
+# Logging
+verbose: false                  # Enable verbose logging
